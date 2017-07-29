@@ -63,7 +63,7 @@
     <module name="count_time"/>
     <module name="guidance_h_module"/>
     <module name="guidance_v_module"/> 
-    <module name="higher_level_logic_replay"/> 
+    <module name="higher_level_logic"/> 
     <module name="replay_cmd"/>
     <module name="motion_primitive"/>
     <!--module name="cv_detect_gate">
