@@ -1,0 +1,16 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="guidance_module_plan">
+  <doc>
+    <description> Logic for MODULE MODE </description>
+  </doc>
+  <header>
+    <file name="guidance_h_module_plan.h"/>
+  </header>
+  
+  <makefile>
+    <file name="guidance_h_module_plan.c"/>
+    <!--<file name="guidance_v_module_plan.c"/>-->
+  </makefile>
+</module>
+

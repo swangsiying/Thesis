@@ -27,7 +27,7 @@
 #include "generated/airframe.h"
 #include "firmwares/rotorcraft/guidance/guidance_v.h"
 #include "firmwares/rotorcraft/guidance/guidance_module.h"
-
+//#include "modules/guidance_module_plan/guidance_module_plan.h"
 #include "firmwares/rotorcraft/guidance/guidance_hybrid.h"
 #include "subsystems/radio_control.h"
 #include "firmwares/rotorcraft/stabilization.h"
@@ -45,6 +45,7 @@
 #error "ALL control gains must be positive!!!"
 #endif
 
+#define GUIDANCE_V_MODE_MODULE_SETTING GUIDANCE_V_MODE_HOVER
 
 /* If only GUIDANCE_V_NOMINAL_HOVER_THROTTLE is defined,
  * disable the adaptive throttle estimation by default.

@@ -1,0 +1,15 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="count_time">
+  <doc>
+    <description>Counts the time</description>
+  </doc>
+  <header>
+    <file name="count_time.h"/>
+  </header>
+  <periodic fun="count_time()" freq="100."/>
+  <makefile>
+    <file name="count_time.c"/>
+  </makefile>
+</module>
+

@@ -1,0 +1,14 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="replay_cmd">
+  <doc>
+	<description> Replays commands from csv file </description>
+  </doc>
+  <header>
+	<file name="replay_cmd.h" />
+  </header>
+  <!--<periodic fun="replay_cmd_periodic()" start="replay_cmd_start()" stop="replay_cmd_stop()"  freq="512.0" autorun="FALSE"/>-->
+  <makefile>
+	<file name="replay_cmd.c"/>
+  </makefile>
+</module>

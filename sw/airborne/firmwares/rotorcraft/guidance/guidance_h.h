@@ -38,7 +38,7 @@
  * Default is TRUE, define to FALSE to always disable it.
  */
 #ifndef GUIDANCE_H_USE_REF
-#define GUIDANCE_H_USE_REF TRUE
+#define GUIDANCE_H_USE_REF FALSE
 #endif
 
 /** Use horizontal guidance speed reference.
@@ -46,7 +46,7 @@
  * Default is TRUE, define to FALSE to always disable it.
  */
 #ifndef GUIDANCE_H_USE_SPEED_REF
-#define GUIDANCE_H_USE_SPEED_REF TRUE
+#define GUIDANCE_H_USE_SPEED_REF FALSE
 #endif
 
 #define GUIDANCE_H_MODE_KILL        0

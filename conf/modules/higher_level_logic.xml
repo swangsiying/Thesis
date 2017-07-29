@@ -1,0 +1,14 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="higher_level_logic">
+  <doc>
+    <description>Higer level logics</description>
+  </doc>
+  <header>
+    <file name="higher_level_logic.h"/>
+  </header>
+  <periodic fun="higher_level_run()" freq="100."/>
+  <makefile>
+    <file name="higher_level_logic.c"/>
+  </makefile>
+</module>

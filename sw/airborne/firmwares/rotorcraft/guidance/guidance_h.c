@@ -73,6 +73,8 @@ PRINT_CONFIG_VAR(GUIDANCE_H_USE_SPEED_REF)
 #define GUIDANCE_H_APPROX_FORCE_BY_THRUST FALSE
 #endif
 
+#define GUIDANCE_H_MODE_MODULE_SETTING GUIDANCE_H_MODE_MODULE  ///!!!!!!!!!!!!!!
+
 #ifndef GUIDANCE_INDI
 #define GUIDANCE_INDI FALSE
 #endif
@@ -181,8 +183,8 @@ void guidance_h_init(void)
   guidance_h.gains.p = GUIDANCE_H_PGAIN;
   guidance_h.gains.i = GUIDANCE_H_IGAIN;
   guidance_h.gains.d = GUIDANCE_H_DGAIN;
-  guidance_h.gains.a = GUIDANCE_H_AGAIN;
-  guidance_h.gains.v = GUIDANCE_H_VGAIN;
+  guidance_h.gains.a = GUIDANCE_H_AGAIN;                  // 0
+  guidance_h.gains.v = GUIDANCE_H_VGAIN;                  // 0
   transition_percentage = 0;
   transition_theta_offset = 0;
 
@@ -227,7 +229,7 @@ void guidance_h_mode_changed(uint8_t new_mode)
 
   if (new_mode != GUIDANCE_H_MODE_FORWARD && new_mode != GUIDANCE_H_MODE_RATE) {
     transition_percentage = 0;
-    transition_theta_offset = 0;
+    transition_theta_offset = 0;    // 在其他模式中是否没用？
   }
 
 #if HYBRID_NAVIGATION
@@ -258,19 +260,20 @@ void guidance_h_mode_changed(uint8_t new_mode)
         stabilization_attitude_enter();
       break;
 
-    case GUIDANCE_H_MODE_GUIDED:
-    case GUIDANCE_H_MODE_HOVER:
+    case GUIDANCE_H_MODE_GUIDED:            //////////////////
+    case GUIDANCE_H_MODE_HOVER:             /////////////////  pay attention
 #if GUIDANCE_INDI
       guidance_indi_enter();
 #endif
-      guidance_h_hover_enter();
-#if NO_ATTITUDE_RESET_ON_MODE_CHANGE
+      guidance_h_hover_enter();      // ！！！！！！！！！ set v = 0, clear mask, set pos_sp to be current position
+#if NO_ATTITUDE_RESET_ON_MODE_CHANGE  //      recalculate reference set psi = current psi
+          //  无论进入hover模式还是guided模式，都首先让飞机悬停，清除速度使能，pos sp 设为当前位置，重新计算ref使之悬停
       /* reset attitude stabilization if previous mode was not using it */
       if (guidance_h.mode == GUIDANCE_H_MODE_KILL ||
           guidance_h.mode == GUIDANCE_H_MODE_RATE ||
           guidance_h.mode == GUIDANCE_H_MODE_RC_DIRECT)
 #endif
-        stabilization_attitude_enter();
+        stabilization_attitude_enter();    // set psi
       break;
 
 #if GUIDANCE_H_MODE_MODULE_SETTING == GUIDANCE_H_MODE_MODULE
@@ -362,6 +365,11 @@ void guidance_h_read_rc(bool  in_flight)
 
 }
 
+//-------------------------------------
+//     Important
+//    2016.8.1 Shuo remarked
+//-------------------------------------
+
 void guidance_h_run(bool  in_flight)
 {
   switch (guidance_h.mode) {
@@ -390,13 +398,14 @@ void guidance_h_run(bool  in_flight)
       guidance_h.sp.heading = guidance_h.rc_sp.psi;
       /* fall trough to GUIDED to update ref, run traj and set final attitude setpoint */
 
+          // pay attention
     case GUIDANCE_H_MODE_GUIDED:
       /* guidance_h.sp.pos and guidance_h.sp.heading need to be set from external source */
       if (!in_flight) {
         guidance_h_hover_enter();
       }
 
-      guidance_h_update_reference();
+      guidance_h_update_reference();   // important
 
 #if GUIDANCE_INDI
       guidance_indi_run(in_flight, guidance_h.sp.heading);
@@ -475,11 +484,11 @@ void guidance_h_run(bool  in_flight)
 }
 
 
-static void guidance_h_update_reference(void)
+static void guidance_h_update_reference(void)    // important    //calculate ref according to current state and sp
 {
   /* compute reference even if usage temporarily disabled via guidance_h_use_ref */
 #if GUIDANCE_H_USE_REF
-  if (bit_is_set(guidance_h.sp.mask, 5)) {
+  if (bit_is_set(guidance_h.sp.mask, 5)) {                    // 速度预位
     gh_update_ref_from_speed_sp(guidance_h.sp.speed);
   } else {
     gh_update_ref_from_pos_sp(guidance_h.sp.pos);
@@ -520,7 +529,7 @@ static void guidance_h_update_reference(void)
 
 /* with a pgain of 100 and a scale of 2,
  * you get an angle of 5.6 degrees for 1m pos error */
-#define GH_GAIN_SCALE 2
+#define GH_GAIN_SCALE 3
 
 #if !GUIDANCE_INDI
 static void guidance_h_traj_run(bool in_flight)

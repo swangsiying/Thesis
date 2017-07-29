@@ -1,0 +1,15 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="guidance_h_module">
+  <doc>
+    <description>Logic for MODULE</description>
+  </doc>
+  <header>
+    <file name="guidance_h_module.h"/>
+  </header>
+  <init fun="guidance_h_module_init()"/>
+  <makefile>
+    <file name="guidance_h_module.c"/>
+  </makefile>
+</module>
+

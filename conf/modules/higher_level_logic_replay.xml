@@ -1,0 +1,14 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="higher_level_logic_replay">
+  <doc>
+    <description>Higer level logics for replay commands</description>
+  </doc>
+  <header>
+    <file name="higher_level_logic_replay.h"/>
+  </header>
+  <periodic fun="higher_level_logic_replay_run()" freq="10.0"/>
+  <makefile>
+    <file name="higher_level_logic_replay.c"/>
+  </makefile>
+</module>

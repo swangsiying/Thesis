@@ -1,0 +1,15 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="motion_primitive">
+  <doc>
+    <description>Motion primitive command</description>
+  </doc>
+  <header>
+    <file name="motion_primitive.h"/>
+  </header>
+  <!--<periodic fun="set_user_ref()" freq="20.0"/> -->
+  <makefile>
+    <file name="motion_primitive.c"/>
+  </makefile>
+</module>
+
