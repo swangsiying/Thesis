@@ -25,7 +25,7 @@ int index_x = 0;
 int index_y = 0;
 int index_z = 0;
 int rpy_counter;
-int rpy_phi,rpy_theta,rpy_psi;
+int rpy_phi,rpy_theta,rpy_psi, rpy_thrust;
 
 double rpy_timestamp, rpy_time1, rpy_time2;
 
@@ -75,7 +75,7 @@ void replay_cmd_periodic(void){
           }
 
 
-    sscanf(str, "%d %lf %lf %lf  %d %d %d", &rpy_counter, &rpy_timestamp, &rpy_time1, &rpy_time2, &rpy_phi,&rpy_theta, &rpy_psi);
+    sscanf(str, "%d %lf %lf %lf  %d %d %d %d", &rpy_counter, &rpy_timestamp, &rpy_time1, &rpy_time2, &rpy_phi,&rpy_theta, &rpy_psi, &rpy_thrust);
     printf("phi = %d, theta = %d, psi = %d\n" , rpy_phi, rpy_theta, psi_setpoint);
     cmd_to_replay.phi = rpy_phi;
     cmd_to_replay.theta = rpy_theta;

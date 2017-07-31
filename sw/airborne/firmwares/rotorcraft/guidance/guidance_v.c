@@ -45,7 +45,7 @@
 #error "ALL control gains must be positive!!!"
 #endif
 
-#define GUIDANCE_V_MODE_MODULE_SETTING GUIDANCE_V_MODE_HOVER
+#define GUIDANCE_V_MODE_MODULE_SETTING GUIDANCE_V_MODE_MODULE
 
 /* If only GUIDANCE_V_NOMINAL_HOVER_THROTTLE is defined,
  * disable the adaptive throttle estimation by default.

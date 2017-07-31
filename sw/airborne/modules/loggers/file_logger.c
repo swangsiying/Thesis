@@ -126,7 +126,7 @@ void file_logger_periodic(void)
   static uint32_t counter;
   struct Int32Quat *quat = stateGetNedToBodyQuat_i();
 //flow_v_x,flow_v_y,body_v_x,body_v_y                                                    //%f,%f,%f,
-  fprintf(file_logger, "%d, %f, %f, %f,  %d,%d,%d, %f,%f,%f,   %d,%d,%d,%d,%d,%d,%d,%d,%d,   %f,%f,%f,   %f,%f,%f,%f,%f,%f,   %d,   %f,%f,%f,%f ,  %f,%f,%d,%d,   %d,%d,%d,%d,%d,%d,%d, %d, %d,%d,%d,%d, %d,%d,%d , %d,%d\n",
+  fprintf(file_logger, "%d, %f, %f, %f,  %d,%d,%d, %d, %f,%f,%f,   %d,%d,%d,%d,%d,%d,%d,%d,%d,   %f,%f,%f,   %f,%f,%f,%f,%f,%f,     %f,%f,%f,%f ,  %f,%f,%d,%d,   %d,%d,%d,%d,%d,%d,%d, %d, %d,%d,%d,%d, %d,%d,%d , %d,%d\n",
           counter, 
 	  
 	  time_stamp,
@@ -137,9 +137,11 @@ void file_logger_periodic(void)
 	  stab_att_sp_euler.theta,
 	  stab_att_sp_euler.psi, //7
 
+	  stabilization_cmd[COMMAND_THRUST],
+
 	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.phi),
 	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.theta),
-	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.psi),  //10
+	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.psi),  //11
 
 	  imu.gyro.p,//right hand rule
           imu.gyro.q,
@@ -149,7 +151,7 @@ void file_logger_periodic(void)
           imu.accel.z,
           imu.mag.x,//not tested
           imu.mag.y,
-          imu.mag.z,  //19
+          imu.mag.z,  //20
 	  
           stateGetNedToBodyEulers_f()->phi,// rad positive roll to the right
           stateGetNedToBodyEulers_f()->theta,//negative pitch forward
@@ -160,9 +162,9 @@ void file_logger_periodic(void)
           stateGetPositionNed_f()->z,
           stateGetSpeedNed_f()->x,//as in debug msg?
           stateGetSpeedNed_f()->y,
-          stateGetSpeedNed_f()->z,   //28
+          stateGetSpeedNed_f()->z,   //29
   
-	     stabilization_cmd[COMMAND_THRUST],//
+	     //
 // 	  stabilization_cmd[COMMAND_ROLL],
 // 	  stabilization_cmd[COMMAND_PITCH],
 // 	  stabilization_cmd[COMMAND_YAW],

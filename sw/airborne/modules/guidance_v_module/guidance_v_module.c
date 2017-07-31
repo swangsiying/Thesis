@@ -33,8 +33,7 @@ void guidance_v_module_enter(void){
 }
 
 void guidance_v_module_run(bool in_flight){
-printf("height = %f\n", height_setpoint);
+    printf("thrust to replay = %d\n", rpy_thrust);
 	//z_0 = stateGetPositionNed_f()->z;
-	guidance_v_guided_vel_enabled = false;
-	guidance_v_z_sp = POS_BFP_OF_REAL(height_setpoint);
+    stabilization_cmd[COMMAND_THRUST] = rpy_thrust;
 }
