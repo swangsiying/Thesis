@@ -63,7 +63,7 @@
     <module name="count_time"/>
     <module name="guidance_h_module"/>
     <module name="guidance_v_module"/> 
-    <module name="higher_level_logic"/> 
+    <module name="higher_level_logic_replay"/> 
     <module name="replay_cmd"/>
     <module name="motion_primitive"/>
     <!--module name="cv_detect_gate">
@@ -163,10 +163,10 @@
     <define name="G1_R" value="0.0007"/>
     <define name="G2_R" value="0.10502"/-->
 
-    <define name="G1_P" value="0.03762"/>
-    <define name="G1_Q" value="0.031149"/>
-    <define name="G1_R" value="0.00094"/>
-    <define name="G2_R" value="0.081811"/>
+    <define name="G1_P" value="0.038484"/>
+    <define name="G1_Q" value="0.026188"/>
+    <define name="G1_R" value="0.00039"/>
+    <define name="G2_R" value="0.107448"/>
 
     <!-- reference acceleration for attitude control -->
     <define name="REF_ERR_P" value="600.0"/>

@@ -9,8 +9,8 @@
 #include "firmwares/rotorcraft/autopilot.h"
 #include "firmwares/rotorcraft/guidance.h"
 #include "modules/count_time/count_time.h"
-#include "modules/higher_level_logic/higher_level_logic.h"
-//#include "modules/higher_level_logic_replay/higher_level_logic_replay.h"
+//#include "modules/higher_level_logic/higher_level_logic.h"
+#include "modules/higher_level_logic_replay/higher_level_logic_replay.h"
 #include <stdio.h>
 #include <stdlib.h>
 #ifndef PI
@@ -23,6 +23,7 @@
 
 float x_0, y_0, x_ac, y_ac, z_ac, psi_0,z_0;
 float height_setpoint;
+int psi_setpoint;
 float ref_x, ref_y, ref_z;
 float T, circ_radius;
 float theta_traveled;
@@ -45,6 +46,7 @@ void hover_mode(float time_spent){
 		z_0 = stateGetPositionNed_f()->z;
 		psi_0 = stateGetNedToBodyEulers_f()->psi;
 		height_setpoint = z_0;
+		psi_setpoint = stateGetNedToBodyEulers_i()->psi;
 		}
 		//printf("Time1 = %f\n", time_temp1);
 	}

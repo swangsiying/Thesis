@@ -100,7 +100,7 @@
   />
   <aircraft
    name="Bebop_default"
-   ac_id="20"
+   ac_id="201"
    airframe="airframes/TUDELFT/tudelft_bebop_autonomous_race.xml"
    radio="radios/dummy.xml"
    telemetry="telemetry/default_rotorcraft.xml"

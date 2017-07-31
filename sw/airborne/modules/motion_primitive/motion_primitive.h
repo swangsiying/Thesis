@@ -13,5 +13,6 @@ extern void go_straight(float time_spent);
 extern void fly_circle(float x_c, float y_c, float omega_rot);
 extern	void follow_traj(void);
 extern float height_setpoint;
+extern int psi_setpoint;
 extern float theta_traveled;
 #endif /* MOTION_PRIMITIVE_H_ */

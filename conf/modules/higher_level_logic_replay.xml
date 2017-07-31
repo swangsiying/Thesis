@@ -7,7 +7,7 @@
   <header>
     <file name="higher_level_logic_replay.h"/>
   </header>
-  <periodic fun="higher_level_logic_replay_run()" freq="10.0"/>
+  <periodic fun="higher_level_logic_replay_run()" freq="100.0"/>
   <makefile>
     <file name="higher_level_logic_replay.c"/>
   </makefile>
