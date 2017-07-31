@@ -32,6 +32,7 @@
 #include "modules/replay_cmd/replay_cmd.h"
 #include "firmwares/rotorcraft/guidance.h"
 #include "firmwares/rotorcraft/stabilization/stabilization_attitude.h"
+#include "firmwares/rotorcraft/stabilization/stabilization_indi.h"
 
 
 
@@ -50,7 +51,7 @@ void guidance_h_module_read_rc(void){
 void guidance_h_module_run(bool in_flight){
 	replay_cmd_periodic();
 	int32_quat_of_eulers(&stab_att_sp_quat, &cmd_to_replay);
-	stablization_attitude_run(in_flight);
+	stabilization_attitude_run(in_flight);
 }
 
 

@@ -22,7 +22,7 @@
 int index_x = 0;
 int index_y = 0;
 int index_z = 0;
-int rpy_counter,rpy_phi,rpy_phi,rpy_phi;
+int rpy_counter,rpy_phi,rpy_theta,rpy_psi;
 double rpy_timestamp, rpy_time1, rpy_time2;
 
 struct Int32Eulers cmd_to_replay;
