@@ -33,7 +33,7 @@ void guidance_v_module_enter(void){
 }
 
 void guidance_v_module_run(bool in_flight){
-    printf("thrust to replay = %d\n", rpy_thrust);
+    //printf("thrust to replay = %d\n", rpy_thrust);
 	//z_0 = stateGetPositionNed_f()->z;
     stabilization_cmd[COMMAND_THRUST] = rpy_thrust;
 }

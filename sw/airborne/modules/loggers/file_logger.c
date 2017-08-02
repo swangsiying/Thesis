@@ -126,22 +126,23 @@ void file_logger_periodic(void)
   static uint32_t counter;
   struct Int32Quat *quat = stateGetNedToBodyQuat_i();
 //flow_v_x,flow_v_y,body_v_x,body_v_y                                                    //%f,%f,%f,
-  fprintf(file_logger, "%d, %f, %f, %f,  %d,%d,%d, %d, %f,%f,%f,   %d,%d,%d,%d,%d,%d,%d,%d,%d,   %f,%f,%f,   %f,%f,%f,%f,%f,%f,     %f,%f,%f,%f ,  %f,%f,%d,%d,   %d,%d,%d,%d,%d,%d,%d, %d, %d,%d,%d,%d, %d,%d,%d , %d,%d\n",
+  fprintf(file_logger, "%d, %f, %f, %f,  %f,%f,%f, %d, %d,%d,%d,   %d,%d,%d,%d,%d,%d,%d,%d,%d,   %f,%f,%f,   %f,%f,%f,%f,%f,%f,     %f,%f,%f,%f ,  %f,%f,%d,%d,   %d,%d,%d,%d,%d,%d,%d, %d, %d,%d,%d,%d, %d,%d,%d , %d,%d\n",
           counter, 
 	  
 	  time_stamp,
 	  time_temp1,
   	  time_temp2,  //4
 	  
-	  stab_att_sp_euler.phi,
-	  stab_att_sp_euler.theta,
-	  stab_att_sp_euler.psi, //7
+	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.phi),
+	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.theta),
+	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.psi), //7
 
 	  stabilization_cmd[COMMAND_THRUST],
 
-	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.phi),
-	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.theta),
-	  ANGLE_FLOAT_OF_BFP(stab_att_sp_euler.psi),  //11
+	  stab_att_sp_euler.phi,
+	  stab_att_sp_euler.theta,
+	  stab_att_sp_euler.psi, //11
+
 
 	  imu.gyro.p,//right hand rule
           imu.gyro.q,
