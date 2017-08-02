@@ -9,8 +9,8 @@
 #include "firmwares/rotorcraft/autopilot.h"
 #include "firmwares/rotorcraft/guidance.h"
 #include "modules/count_time/count_time.h"
-//#include "modules/higher_level_logic/higher_level_logic.h"
-#include "modules/higher_level_logic_replay/higher_level_logic_replay.h"
+#include "modules/higher_level_logic/higher_level_logic.h"
+//#include "modules/higher_level_logic_replay/higher_level_logic_replay.h"
 #include <stdio.h>
 #include <stdlib.h>
 #ifndef PI
