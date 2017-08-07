@@ -46,8 +46,9 @@ void replay_cmd_start(void){
 				//printf("IN MODULE MODE\n");
 
 	    char filename[512];
-	    sprintf(filename, "%s/%d%d%d.csv",  STRINGIFY(FILE_RPY_PATH), index_x, index_y, index_z);
-	    //sprintf(filename, "%d%d%d_1.csv",  index_x, index_y, index_z);
+	    //sprintf(filename, "%s/%d%d%d.csv",  STRINGIFY(FILE_RPY_PATH), index_x, index_y, index_z);
+	    sprintf(filename, "%s/avg_CL.csv",  STRINGIFY(FILE_RPY_PATH));
+
 	    printf("filename = %s\n", filename);
 	    errno = 0;
 	    file = fopen(filename , "r");
