@@ -32,8 +32,9 @@ void higher_level_logic_replay_run(void);
 void higher_level_logic_replay_run(void){
 	printf("CURRENT MODE = %d\n", guidance_h.mode);
 	 if (guidance_h.mode != GUIDANCE_H_MODE_GUIDED){
-		//current_primitive = STANDBY;
-		//previous_primitive = STANDBY;
+		current_primitive = STANDBY;
+		previous_primitive = STANDBY;
+		STOP_FLAG = 0;
 		 return;
 	}
 	else
