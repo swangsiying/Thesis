@@ -31,8 +31,8 @@ int STOP_FLAG = 0;
 void higher_level_run(){
 	if (guidance_h.mode != GUIDANCE_H_MODE_GUIDED){
 		printf("NOT IN GUIDED MODE\n");
-		//current_primitive = STANDBY;
-		//previous_primitive = STANDBY;
+		current_primitive = STANDBY;
+		previous_primitive = STANDBY;
 		return;
 	}
 	else

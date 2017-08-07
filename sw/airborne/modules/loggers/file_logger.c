@@ -69,12 +69,12 @@ void file_logger_start(void)
   char filename[512];
 
   // Check for available files
-  sprintf(filename, "%s/%05d.csv", STRINGIFY(FILE_LOGGER_PATH), counter);
+  sprintf(filename, "%s/OL_%05d.csv", STRINGIFY(FILE_LOGGER_PATH), counter);
   while ((file_logger = fopen(filename, "r"))) {
     fclose(file_logger);
 
     counter++;
-    sprintf(filename, "%s/%05d.csv", STRINGIFY(FILE_LOGGER_PATH), counter);
+    sprintf(filename, "%s/OL_%05d.csv", STRINGIFY(FILE_LOGGER_PATH), counter);
   }
 
   file_logger = fopen(filename, "w");
@@ -126,7 +126,7 @@ void file_logger_periodic(void)
   static uint32_t counter;
   struct Int32Quat *quat = stateGetNedToBodyQuat_i();
 //flow_v_x,flow_v_y,body_v_x,body_v_y                                                    //%f,%f,%f,
-  fprintf(file_logger, "%d, %f, %f, %f,  %f,%f,%f, %d, %d,%d,%d,   %d,%d,%d,%d,%d,%d,%d,%d,%d,   %f,%f,%f,   %f,%f,%f,%f,%f,%f,     %f,%f,%f,%f ,  %f,%f,%d,%d,   %d,%d,%d,%d,%d,%d,%d, %d, %d,%d,%d,%d, %d,%d,%d , %d,%d\n",
+  fprintf(file_logger, "%d, %f, %f, %f,   %f,%f,%f, %d, %d,%d,%d,   %d,%d,%d,%d,%d,%d,%d,%d,%d,   %f,%f,%f,   %f,%f,%f,%f,%f,%f,     %f,%f,%f,%f ,  %f,%f,%d,%d,   %d,%d,%d,%d,%d,%d,%d, %d, %d,%d,%d,%d, %d,%d,%d , %d,%d\n",
           counter, 
 	  
 	  time_stamp,
