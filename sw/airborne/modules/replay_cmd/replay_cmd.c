@@ -75,11 +75,16 @@ void replay_cmd_periodic(void){
           }
 
 
-    sscanf(str, "%d %lf %lf %lf  %d %d %d %d", &rpy_counter, &rpy_timestamp, &rpy_time1, &rpy_time2, &rpy_phi,&rpy_theta, &rpy_psi, &rpy_thrust);
-    printf("phi = %d, theta = %d, psi = %d\n" , rpy_phi, rpy_theta, psi_setpoint);
-    cmd_to_replay.phi = rpy_phi;
-    cmd_to_replay.theta = rpy_theta;
-    cmd_to_replay.psi = psi_setpoint;
+          sscanf(str, "%d %lf %lf %lf  %f  %f  %f  %d  %d %d %d ", &rpy_counter, &rpy_timestamp, &rpy_time1, &rpy_time2, &real_phi, &real_theta, &real_psi, &rpy_thrust, &BFP_phi, &BFP_theta, &BFP_psi);
+              //printf("phi = %f,  theta = %f, psi = %d\n" , ANGLE_FLOAT_OF_BFP(rpy_phi), ANGLE_FLOAT_OF_BFP(rpy_theta), psi_setpoint);
+
+              rpy_phi = ANGLE_BFP_OF_REAL(real_phi);
+              rpy_theta = ANGLE_BFP_OF_REAL(real_theta);
+              rpy_psi = ANGLE_BFP_OF_REAL(real_psi);
+
+              cmd_to_replay.phi = rpy_phi;
+              cmd_to_replay.theta = rpy_theta;
+              cmd_to_replay.psi = psi_setpoint;
 
     //int32_quat_of_eulers(&cmd_quat_to_replay, &cmd_to_replay);
     }

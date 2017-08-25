@@ -69,12 +69,12 @@ void file_logger_start(void)
   char filename[512];
 
   // Check for available files
-  sprintf(filename, "%s/OL_%05d.csv", STRINGIFY(FILE_LOGGER_PATH), counter);
+  sprintf(filename, "%s/OL_%d.csv", STRINGIFY(FILE_LOGGER_PATH), counter);
   while ((file_logger = fopen(filename, "r"))) {
     fclose(file_logger);
 
     counter++;
-    sprintf(filename, "%s/OL_%05d.csv", STRINGIFY(FILE_LOGGER_PATH), counter);
+    sprintf(filename, "%s/OL_%d.csv", STRINGIFY(FILE_LOGGER_PATH), counter);
   }
 
   file_logger = fopen(filename, "w");
