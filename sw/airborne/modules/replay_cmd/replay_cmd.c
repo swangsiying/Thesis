@@ -25,7 +25,8 @@ int index_x = 0;
 int index_y = 0;
 int index_z = 0;
 int rpy_counter;
-int rpy_phi,rpy_theta,rpy_psi, rpy_thrust;
+int rpy_phi,rpy_theta,rpy_psi, rpy_thrust, BFP_phi, BFP_theta,BFP_psi;
+float real_phi, real_theta, real_psi;
 
 double rpy_timestamp, rpy_time1, rpy_time2;
 
