@@ -50,7 +50,8 @@ void guidance_h_module_read_rc(void){
 
 void guidance_h_module_run(bool in_flight){
 	replay_cmd_periodic();
-	int32_quat_of_eulers(&stab_att_sp_quat, &cmd_to_replay);
+	quat_from_earth_cmd_i(&stab_att_sp_quat, &cmd_use_quat, rpy_psi);
+	//int32_quat_of_eulers(&stab_att_sp_quat, &cmd_to_replay);
 	stabilization_attitude_run(in_flight);
 }
 

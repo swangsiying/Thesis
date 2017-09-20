@@ -32,6 +32,7 @@ double rpy_timestamp, rpy_time1, rpy_time2;
 
 struct Int32Eulers cmd_to_replay;
 struct Int32Eulers cmd_quat_to_replay;
+struct Int32Vect2 cmd_use_quat;
 
 #ifndef FILE_RPY_PATH
 #define FILE_RPY_PATH /data/ftp/internal_000/
@@ -47,7 +48,7 @@ void replay_cmd_start(void){
 
 	    char filename[512];
 	    //sprintf(filename, "%s/%d%d%d.csv",  STRINGIFY(FILE_RPY_PATH), index_x, index_y, index_z);
-	    sprintf(filename, "%s/avg_CL_oppo.csv",  STRINGIFY(FILE_RPY_PATH));
+	    sprintf(filename, "%s/quat_CL1.csv",  STRINGIFY(FILE_RPY_PATH));
 
 	    printf("filename = %s\n", filename);
 	    errno = 0;
@@ -80,14 +81,16 @@ void replay_cmd_periodic(void){
     sscanf(str, "%d %lf %lf %lf  %f  %f  %f  %d  %d %d %d ", &rpy_counter, &rpy_timestamp, &rpy_time1, &rpy_time2, &real_phi, &real_theta, &real_psi, &rpy_thrust, &BFP_phi, &BFP_theta, &BFP_psi);
     //printf("phi = %f,  theta = %f, psi = %d\n" , ANGLE_FLOAT_OF_BFP(rpy_phi), ANGLE_FLOAT_OF_BFP(rpy_theta), psi_setpoint);
 
-    rpy_phi = ANGLE_BFP_OF_REAL(real_phi);
-    rpy_theta = ANGLE_BFP_OF_REAL(real_theta);
+    rpy_phi = ANGLE_BFP_OF_REAL(real_phi); //cmd_x
+    rpy_theta = ANGLE_BFP_OF_REAL(real_theta); //cmd_y
     rpy_psi = ANGLE_BFP_OF_REAL(real_psi);
 
-    cmd_to_replay.phi = rpy_phi;
-    cmd_to_replay.theta = rpy_theta;
-    cmd_to_replay.psi = psi_setpoint;
+   // cmd_to_replay.phi = rpy_phi;
+    //cmd_to_replay.theta = rpy_theta;
+    //cmd_to_replay.psi = rpy_psi;
 
+    cmd_use_quat.x = rpy_phi;
+    cmd_use_quat.y = rpy_theta;
     //printf("BFP_phi = %d, BFP_theta = %d, BFP_psi = %d\n", BFP_phi, BFP_theta, BFP_psi);
    // printf("rpy_phi = %d, rpy_theta = %d, rpy_psi = %d\n", rpy_phi, rpy_theta, rpy_psi);
 

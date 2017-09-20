@@ -10,6 +10,7 @@
 
 extern struct Int32Eulers cmd_to_replay;
 extern struct Int32Eulers cmd_quat_to_replay;
+extern struct Int32Vect2 cmd_use_quat;
 extern int rpy_phi, rpy_theta, rpy_psi, rpy_thrust;
 
 extern void replay_cmd_start(void);
