@@ -73,7 +73,7 @@ void higher_level_run(){
 
 		case FOLLOW_TRAJ:
 			follow_traj();
-			if (time_temp2 > 2.95){
+			if (time_temp2 > 2.45){
 				current_primitive = HOVER_MODE;
 				printf("Switch to hover\n");
 				STOP_FLAG = 1;

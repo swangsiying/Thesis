@@ -44,7 +44,8 @@ void hover_mode(float time_spent){
 		x_0 = stateGetPositionNed_f()->x;
 		y_0 = stateGetPositionNed_f()->y;
 		z_0 = stateGetPositionNed_f()->z;
-		psi_0 = stateGetNedToBodyEulers_f()->psi;
+		//psi_0 = stateGetNedToBodyEulers_f()->psi;
+		psi_0 = -0.50;
 		height_setpoint = z_0;
 		psi_setpoint = stateGetNedToBodyEulers_i()->psi;
 		}
@@ -60,6 +61,7 @@ void hover_mode(float time_spent){
 	guidance_h_set_guided_heading(psi_0);
 	guidance_v_set_guided_z(z_0);
 	previous_primitive = HOVER_MODE;
+	//printf("psi = %f\n", psi_0);
 	printf("Time1 = %f\n", time_temp1);
 	printf("pos_x = %f,    pos_y = %f\n, pos_z = %f\n", POS_FLOAT_OF_BFP(guidance_h.sp.pos.x),POS_FLOAT_OF_BFP(guidance_h.sp.pos.y), z_0 );
 	//printf("x_0 = %f, y_0 = %f\n", x_0, y_0);
@@ -146,11 +148,24 @@ void follow_traj(void){
 			    y_0 = stateGetPositionNed_f()->y;
 			    z_0 = stateGetPositionNed_f()->z;
 				psi_0 = stateGetNedToBodyEulers_f()->psi;
+
 	}
 
+	float px[POLY_ORDER + 1] = {0,0, 0.0833,-0.0000,0.2188,-0.0729,0.0078,-0.0000}; //x2 y19 tf = 2
+	float py[POLY_ORDER + 1] = {0,0,-1.0667,-0.0000,0.3500,-0.1167,0.0125,-0.0000};
 
-	float px[POLY_ORDER + 1] = {0.0, 0.0, -0.0613, 0.0, 0.1389, -0.0370, 0.0032, 0.0};
-	float py[POLY_ORDER + 1] = {0.0, 0.0, -0.8533, 0.0,0.1792, -0.0478, 0.0041, 0.0};
+	//float px[POLY_ORDER + 1] = {0,0,-0.3947,-0.0000,0.2509,-0.0669,0.0057, -0.0000}; //x1 y1 tf = 2.5, vf = 4
+	//float py[POLY_ORDER + 1] = {0,0, 0.8533,-0.0000,-0.1792,0.0478,-0.0041,-0.0000};
+
+	//float px[POLY_ORDER + 1] = {0,0,0.2720, 0.0000, 0.0269,-0.0072, 0.0006, 0.0000}; //x1,y1,tf = 2.5, vf = 2
+	//float py[POLY_ORDER + 1] = {0,0,0.8533,-0.0000,-0.1792, 0.0478,-0.0041,-0.0000};
+
+	//float px[POLY_ORDER + 1] = {0.0,0.0,-0.0074, 0.0000, 0.5877,-0.2612, 0.0373, 0.0000}; //x5 y4 tf = 1.5
+	//float py[POLY_ORDER + 1] = {0.0,0.0, 1.6593, 0.0000,-0.9679, 0.4302,-0.0615, 0.0000};
+
+
+	//float px[POLY_ORDER + 1] = {0.0, 0.0, -0.0613, 0.0, 0.1389, -0.0370, 0.0032, 0.0};
+	//float py[POLY_ORDER + 1] = {0.0, 0.0, -0.8533, 0.0,0.1792, -0.0478, 0.0041, 0.0};
 	float pz[POLY_ORDER + 1] = {-2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
 	int i;
@@ -172,6 +187,7 @@ void follow_traj(void){
 	guidance_v_set_guided_z(z_0);
 	guidance_h_set_guided_heading(psi_0);
 	previous_primitive = FOLLOW_TRAJ;
+
 	printf("i = %d, t = %f\n  pos_x = %f, pos_y = %f\n", i, time_temp2, POS_FLOAT_OF_BFP(guidance_h.sp.pos. x), POS_FLOAT_OF_BFP(guidance_h.sp.pos.y));
 
 }
