@@ -48,7 +48,7 @@ void replay_cmd_start(void){
 
 	    char filename[512];
 	    //sprintf(filename, "%s/%d%d%d.csv",  STRINGIFY(FILE_RPY_PATH), index_x, index_y, index_z);
-	    sprintf(filename, "%s/quat_CL1.csv",  STRINGIFY(FILE_RPY_PATH));
+	    sprintf(filename, "%s/quat_x2y19.csv",  STRINGIFY(FILE_RPY_PATH));
 
 	    printf("filename = %s\n", filename);
 	    errno = 0;
